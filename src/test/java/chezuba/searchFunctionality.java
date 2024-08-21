@@ -19,7 +19,7 @@ public class searchFunctionality {
 	@BeforeTest // Testng @BeforeTest Annotation - Executes the setup method before any test methods
 	public void setup() {
 		
-		// Initialize the ChromeDriver instance
+		// Initialize the Chromedriver instance
 		driver = new ChromeDriver();
 		
 		// Application under test link is stored in a variable "URL";
@@ -35,7 +35,36 @@ public class searchFunctionality {
 		driver.manage().window().maximize();
 	}
 	
-	
+	@Test // Testng - @Test Annotation - will be executed upon executing @beforetest annotation
+	public void testcase1() {
+		
+		// Locating the search box element by ID
+		WebElement searchBox = driver.findElement(By.id("s"));
+		
+		// Input text stored in a variable "input"
+		String input = "selenium";
+		
+		// Entering the text into the search box
+		searchBox.sendKeys(input);
+		
+		// Locating the search button element by ID
+		WebElement searchBtn = driver.findElement(By.id("search-submit"));
+		
+		// Click operation on the element search button
+		searchBtn.click();
+		
+		// Locating the results area element by its ID
+		WebElement resultsArea = driver.findElement(By.id("primary"));
+		
+		// Get the text from the results area
+		String exptext = resultsArea.getText();
+		
+		// Actual text to be verified is declared
+		String acttext = "SEARCH RESULTS FOR: " + input.toUpperCase();
+		
+		// Using testng assertions to verify expected and actual tests
+		Assert.assertTrue(exptext.contains(acttext));
+	}
 	
 	@AfterTest // Testng -@AfterTest Annotation executes after test methods
 	public void teardown() {
