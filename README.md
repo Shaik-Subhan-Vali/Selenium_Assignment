@@ -2,6 +2,7 @@
 
 ## Objective
 
+
 To test a scenario on the search functionality on a web page with the following elements:
 
 - A search input field with the id searchBox
